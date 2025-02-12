@@ -45,22 +45,23 @@ int main(int argc, char* argv[]) {
 	}
 	int FirstChar = MappedMemory[0];
 	int Count = 0;
+	int Replaced = 0;
 	char ReadChar = MappedMemory[Count];
 	while (ReadChar != '\0') {
 		if (ReadChar == ' ') {
 			ReadChar = FirstChar;
+			Replaced = Replaced + 1;
 		}
 		wchar_t WChar = (wchar_t)ReadChar;
 		WMappedMemory[Count] = WChar;
 		Count = Count + 1;
 		ReadChar = MappedMemory[Count];
 	}
-
 	UnmapViewOfFile(MappedMemory);
 	UnmapViewOfFile(WMappedMemory);
 	CloseHandle(FileMapping);
 	CloseHandle(WFileMapping);
 	CloseHandle(File);
 	CloseHandle(WFile);
-	return 0;
+	return Replaced;
 }
