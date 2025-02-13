@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 int main(int argc, char* argv[]) {
-	if (argc != 2) {
-		printf("2 Arguments Were NOT Provided.");
+	if (argc != 3) {
+		printf("3 Arguments Were NOT Provided.");
 		return 1;
 	}
 	char* FileName = argv[1];
@@ -43,12 +43,13 @@ int main(int argc, char* argv[]) {
 		printf("File Is empty!");
 		return 1;
 	}
+	int ReplaceNumber = atoi(argv[2]);
 	int FirstChar = MappedMemory[0];
 	int Count = 0;
 	int Replaced = 0;
 	char ReadChar = MappedMemory[Count];
 	while (ReadChar != '\0') {
-		if (ReadChar == ' ') {
+		if (ReadChar == ' ' && Replaced < ReplaceNumber) {
 			ReadChar = FirstChar;
 			Replaced = Replaced + 1;
 		}
