@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 		printf("Error.");
 		return 1;
 	}
-	HANDLE FileMapping = CreateFileMapping(File, NULL, PAGE_READWRITE, 0, 256, NULL);
+	HANDLE FileMapping = CreateFileMapping(File, NULL, PAGE_READWRITE, 0, 0, NULL);
 	if (FileMapping == INVALID_HANDLE_VALUE || FileMapping == NULL) {
 		printf("Error.");
 		printf("%d", GetLastError());
@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 		printf("Error.");
 		return 1;
 	}
-	HANDLE WFileMapping = CreateFileMapping(WFile, NULL, PAGE_READWRITE, 0, 256, NULL);
+	HANDLE WFileMapping = CreateFileMapping(WFile, NULL, PAGE_READWRITE, 0, strlen(MappedMemory) * sizeof(wchar_t), NULL);
 	if (WFileMapping == INVALID_HANDLE_VALUE || WFileMapping == NULL) {
 		printf("Error.");
 		return 1;
